@@ -71,12 +71,10 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
-        // تخصيص إرسال رابط إعادة تعيين كلمة المرور
-        Fortify::resetPasswordView(function ($request) {
+       Fortify::resetPasswordView(function ($request) {
             return view('auth.reset-password'); // يمكنك تخصيص الصفحة هنا
         });
 
-        // تخصيص إرسال رابط إعادة تعيين كلمة المرور باستخدام Password::sendResetLink
         Fortify::requestPasswordResetLinkUsing(function (Request $request) {
             $status = Password::sendResetLink($request->only('email'));
             

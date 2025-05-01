@@ -43,17 +43,19 @@
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('available_times.index') }}">
-          <i class="bi bi-person"></i>
-          <span>Available Times</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('appointments.index') }}">
-          <i class="bi bi-person"></i>
-          <span>Manage Appointments</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
+    <a class="nav-link collapsed" href="{{ route('available_times.index') }}">
+        <i class="bi bi-calendar-check"></i>
+        <span>Available Times</span>
+    </a>
+</li><!-- End Available Times Nav -->
+
+<li class="nav-item">
+    <a class="nav-link collapsed" href="{{ route('appointments.index') }}">
+        <i class="bi bi-calendar-event"></i>
+        <span>Manage Appointments</span>
+    </a>
+</li><!-- End Manage Appointments Nav -->
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="users-profile.html">
           <i class="bi bi-person"></i>

@@ -17,6 +17,12 @@
 <link rel="stylesheet" href="{{ asset('landing/assets/css/vendor/spacing.css') }}">
 <link rel="stylesheet" href="{{ asset('landing/assets/css/plugins/odometer-theme-default.css') }}">
 <link rel="stylesheet" href="{{ asset('landing/assets/css/main.css') }}">
+<link rel="stylesheet" href="{{ asset('landing/assets/css/btn.css') }}">
+<link rel="stylesheet" href="{{ asset('landing/assets/css/chatbot.css') }}">
+<link rel="stylesheet" href="{{ asset('landing/assets/css/chatbotp.css') }}">
+
+
+  @yield('styles')
 
 </head>
 

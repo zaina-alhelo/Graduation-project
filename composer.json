@@ -13,7 +13,7 @@
         "laravel/socialite": "^5.18",
         "laravel/tinker": "^2.8",
         "pusher/pusher-php-server": "^7.2",
-        "spatie/laravel-permission": "^6.16"
+        "spatie/laravel-permission": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

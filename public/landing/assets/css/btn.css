@@ -1,0 +1,81 @@
+.header__auth-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.auth-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.auth-btn i {
+    margin-right: 6px;
+    font-size: 14px;
+}
+
+.login-btn {
+    color: var(--rr-theme-primary);
+    border: 1px solid var(--rr-theme-primary);
+    background-color: transparent;
+}
+
+.login-btn:hover {
+    color: var(--rr-theme-primary);
+    /* Explicitly keep the same color on hover */
+    background-color: rgba(var(--rr-theme-primary-rgb), 0.1);
+    transform: translateY(-2px);
+}
+
+.signup-btn {
+    color: #fff;
+    background-color: var(--rr-theme-primary);
+    border: 1px solid var(--rr-theme-primary);
+    box-shadow: 0 4px 10px rgba(var(--rr-theme-primary-rgb), 0.25);
+}
+
+.signup-btn:hover {
+    color: #fff;
+    /* Ensuring text remains white on hover */
+    background-color: var(--rr-theme-primary-hover, var(--rr-theme-primary));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(var(--rr-theme-primary-rgb), 0.35);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .header__auth-buttons {
+        margin-right: 5px;
+    }
+
+    .auth-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .auth-btn i {
+        margin-right: 4px;
+    }
+}
+
+@media (max-width: 575px) {
+    .login-btn span {
+        display: none;
+    }
+
+    .login-btn i {
+        margin-right: 0;
+    }
+
+    .signup-btn {
+        padding: 6px 8px;
+    }
+}

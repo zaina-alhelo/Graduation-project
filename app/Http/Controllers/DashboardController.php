@@ -11,18 +11,14 @@ class DashboardController extends Controller
   public function index()
 {
     $user = Auth::user();
-    if ($user->isAdmin()) {
+  if ($user->role == 'admin') {
         return redirect()->route('admin.dashboard');
-    } elseif ($user->isDoctor()) {
+    } elseif ($user->role == 'doctor') {
         return redirect()->route('doctor.dashboard');
+    } elseif ($user->role == 'user') {
+        return redirect()->route('home');
     } else {
-        $conversation = Conversation::where('patient_id', $user->id)
-                                    ->orWhere('doctor_id', $user->id)
-                                    ->first();
-        
-        $conversation_id = $conversation ? $conversation->id : null;
-        
-        return view('patient.dashboard', compact('conversation', 'conversation_id'));
+           return redirect('/');
     }
 }
 }

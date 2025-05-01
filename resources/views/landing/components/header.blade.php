@@ -17,7 +17,6 @@
                         <a href="{{route('home')}}">
                             <div class="logo">
                                 <img src="{{ asset('landing/assets/imgs/logo/logo.svg') }}" alt="OptiEye logo">
-                                
                             </div>
                         </a>
                     </div>
@@ -26,71 +25,90 @@
                         <div class="main-menu main-menu-3">
                             <nav id="mobile-menu">
                                 <ul>
-                                    <li class="active">
+                                    <li class="{{ request()->routeIs('home') ? 'active' : '' }}">
                                         <a href="{{route('home')}}">Home</a>
                                     </li>
-                                    <li class="has-dropdown">
+
+                                    <li class="has-dropdown {{ request()->routeIs('faq') || request()->routeIs('about-us') || request()->routeIs('appointment') ? 'active' : '' }}">
                                         <a href="javascript:void(0)">Pages</a>
                                         <ul class="submenu">
-                                            <li><a href="{{route('faq')}}">Faq</a></li>
-                                            <li><a href="{{route('about-us')}}">About us</a></li>
-                                            <li><a href="{{route('pricing')}}">Pricing</a></li>
-                                            <li><a href="{{route('appointment')}}">Appointment</a></li>
+                                            <li class="{{ request()->routeIs('faq') ? 'active' : '' }}"><a href="{{route('faq')}}">Faq</a></li>
+                                            <li class="{{ request()->routeIs('about-us') ? 'active' : '' }}"><a href="{{route('about-us')}}">About us</a></li>
+                                            <li class="{{ request()->routeIs('appointment') ? 'active' : '' }}"><a href="{{route('appointments.form')}}">Appointment</a></li>
                                         </ul>
                                     </li>
-                                    <li class="has-dropdown">
-                                        <a href="javascript:void(0)">AI Services</a>
+
+                                    <li class="has-dropdown {{ request()->routeIs('service') || request()->routeIs('service-details') ? 'active' : '' }}">
+                                        <a href="javascript:void(0)">Services</a>
                                         <ul class="submenu">
-                                            <li><a href="{{route('service')}}">Eye Diagnostics</a></li>
-                                            <li><a href="{{route('service-details')}}">Diagnostic Details</a></li>
+                                            <li class="{{ request()->routeIs('service') ? 'active' : '' }}"><a href="{{route('service')}}">Eye Diagnostics</a></li>
+                                            <li class="{{ request()->routeIs('service-details') ? 'active' : '' }}"><a href="{{route('service-details')}}">Diagnostic Details</a></li>
                                         </ul>
                                     </li>
-                                    <li class="has-dropdown">
+
+                                    <li class="{{ request()->routeIs('doctor') ? 'active' : '' }}">
                                         <a href="{{route('doctor')}}">Specialists</a>
-                                        <ul class="submenu">
-                                            <li><a href="{{route('doctor')}}">Ophthalmologists</a></li>
-                                            <li><a href="{{route('doctor-details')}}">Specialist Details</a></li>
-                                        </ul>
                                     </li>
-                                    <li class="has-dropdown">
-                                        <a href="{{route('portfolio')}}">Case Studies</a>
-                                        <ul class="submenu">
-                                            <li><a href="{{route('portfolio')}}">Success Stories</a></li>
-                                            <li><a href="{{route('portfolio-details')}}">Case Study Details</a></li>
-                                        </ul>
+
+                                    <li class="{{ request()->routeIs('chatbot') ? 'active' : '' }}">
+                                        <a href="{{route('chatbot')}}">AI Assistant</a>
                                     </li>
-                                    <li class="has-dropdown">
-                                        <a href="{{route('blog')}}">Blog</a>
-                                        <ul class="submenu">
-                                            <li><a href="{{route('blog')}}">Eye Health Tips</a></li>
-                                            <li><a href="{{route('blog-details')}}">Article Details</a></li>
-                                        </ul>
+
+                                    <li class="{{ request()->routeIs('contact') ? 'active' : '' }}">
+                                        <a href="{{route('contact')}}">Contact</a>
                                     </li>
-                                    <li><a href="{{route('contact')}}">Contact</a></li>
+
+                                    @if (Route::has('login'))
+                                        @auth
+                                            <li class="has-dropdown {{ request()->routeIs('patient.dashboard') ? 'active' : '' }}">
+                                                <a href="javascript:void(0)">Account</a>
+                                                <ul class="submenu">
+                                                    <li class="{{ request()->routeIs('patient.dashboard') ? 'active' : '' }}">
+                                                        <a href="{{ route('patient.dashboard') }}">My Profile</a>
+                                                    </li>
+                                                    <li>
+                                                        <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
+                                                            @csrf
+                                                        </form>
+                                                        <a href="#" class="logout-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                            Log out
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        @endauth
+                                    @endif
                                 </ul>
                             </nav>
                         </div>
                     </div>
 
-                    <div class="header__right">
-                        <div class="header__action d-flex align-items-center">
-                            <div class="header__btn-wrap d-none d-sm-inline-flex">
-                                <div class="rr-header-icon-search">
-                                    <button class="search-open-btn">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </button>
+                    @if (Route::has('login'))
+                        @guest
+                            <div class="header__right">
+                                <div class="header__action d-flex align-items-center">
+                                    <div class="header__auth-buttons me-4">
+                                        <a href="{{ route('login') }}" class="auth-btn login-btn me-2">
+                                            <i class="fa-solid fa-user"></i> Log In
+                                        </a>
+                                        @if (Route::has('register'))
+                                            <a href="{{ route('register') }}" class="auth-btn signup-btn">
+                                                <i class="fa-solid fa-user-plus"></i> Sign Up
+                                            </a>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
+                        @endguest
+                    @endif
 
-                            <div class="header__hamburger">
-                                <div class="sidebar__toggle">
-                                    <a class="bar-icon" href="javascript:void(0)">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </a>
-                                </div>
-                            </div>
+                    <div class="header__hamburger">
+                        <div class="sidebar__toggle">
+                            <a class="bar-icon" href="javascript:void(0)">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -99,4 +117,3 @@
     </div>
 </header>
 <!-- Header area end -->
- <body>

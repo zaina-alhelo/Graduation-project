@@ -32,7 +32,7 @@
 </section>
 <!-- Footer area start -->
 <footer>
-    <section class="footer__area-common white-bg overflow-hidden theme-bg-color-100" data-background="assets/imgs/footer/background.png">
+    <section class="footer__area-common white-bg overflow-hidden theme-bg-color-100" data-background="{{ asset('landing/assets/imgs/footer/background.png') }}">
         <div class="container">
             <div class="row mb-minus-50">
                 <div class="col-lg-3 col-6">
@@ -165,7 +165,68 @@
 <script src="{{ asset('landing/assets/js/plugins/smoothscroll.js') }}"></script>
 <script src="{{ asset('landing/assets/js/vendor/ajax-form.js') }}"></script>
 <script src="{{ asset('landing/assets/js/main.js') }}"></script>
+<script>
+// Chatbot functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const chatToggle = document.getElementById('chat-bot-toggle');
+    const chatWindow = document.getElementById('chat-bot-window');
+    const chatClose = document.getElementById('chat-close');
+    const chatInput = document.querySelector('.chat-input input');
+    const chatSend = document.querySelector('.chat-input button');
+    const chatMessages = document.querySelector('.chat-messages');
 
+    // Toggle chat window
+    chatToggle.addEventListener('click', function() {
+        chatWindow.classList.toggle('hidden');
+        if (!chatWindow.classList.contains('hidden')) {
+            chatInput.focus();
+        }
+    });
+
+    // Close chat window
+    chatClose.addEventListener('click', function() {
+        chatWindow.classList.add('hidden');
+    });
+
+    // Send message function
+    function sendMessage() {
+        const message = chatInput.value.trim();
+        if (message) {
+            // Add user message
+            const userMessageElement = document.createElement('div');
+            userMessageElement.classList.add('message', 'user');
+            userMessageElement.textContent = message;
+            chatMessages.appendChild(userMessageElement);
+            
+            // Clear input
+            chatInput.value = '';
+            
+            // Auto scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Simulate bot response (in a real implementation, this would call your chatbot API)
+            setTimeout(function() {
+                const botMessageElement = document.createElement('div');
+                botMessageElement.classList.add('message', 'bot');
+                botMessageElement.textContent = "Thank you for your message. Our team will get back to you shortly.";
+                chatMessages.appendChild(botMessageElement);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+        }
+    }
+
+    // Send on button click
+    chatSend.addEventListener('click', sendMessage);
+    
+    // Send on Enter key
+    chatInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+});
+</script>
+@yield('scripts')
 </body>
 
 </html>

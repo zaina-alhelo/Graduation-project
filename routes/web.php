@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserAppointmentController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,9 +20,7 @@ Route::get('/', function () {
     return view('landing.home');
 })->name('home');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 // Routes requiring authentication
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -29,8 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('user.profile');
 });
 
-// Redirect to dashboard after login
-Route::redirect('/home', '/dashboard');
+
 
 // Admin Dashboard
 Route::middleware(['auth', 'verified', 'role:admin'])->prefix('admin')->group(function () {
@@ -40,18 +38,31 @@ Route::middleware(['auth', 'verified', 'role:admin'])->prefix('admin')->group(fu
 });
 
 // Doctor Dashboard
-Route::middleware(['auth', 'verified', 'role:doctor'])->prefix('doctor')->group(function () {
+    Route::middleware(['auth', 'verified', 'role:doctor'])->prefix('doctor')->group(function () {
+       
+    // Doctor Dashboard
     Route::get('/dashboard', [App\Http\Controllers\Doctor\DashboardController::class, 'index'])->name('doctor.dashboard');
-    Route::resource('available_times', AvailableTimeController::class);
-    Route::get('appointments', [AppointmentController::class, 'index'])->name('appointments.index');
-    Route::get('appointments/{id}', [AppointmentController::class, 'show'])->name('appointments.show');
-    Route::get('doctor/appointments/create', [AppointmentController::class, 'create'])->name('appointments.create');
-    Route::post('doctor/appointments', [AppointmentController::class, 'store'])->name('appointments.store');
 
-Route::patch('doctor/appointments/{id}/update-status', [AppointmentController::class, 'updateStatus'])->name('appointments.updateStatus');
-Route::get('/doctor/patient/create', [PatientController::class, 'create'])->name('patients.create');
-Route::get('available-times/{doctor}/{day}', [AppointmentController::class, 'getAvailableTimes']);
-Route::post('/doctor/patient', [PatientController::class, 'store'])->name('patients.store');
+    // Manage Doctor's Available Times
+    Route::resource('available_times', AvailableTimeController::class);
+// Appointment Management
+    Route::get('appointments', [AppointmentController::class, 'index'])->name('appointments.index');
+    Route::get('appointments/create', [AppointmentController::class, 'create'])->name('appointments.create');
+    Route::post('appointments', [AppointmentController::class, 'store'])->name('appointments.store');
+    Route::get('appointments/{id}', [AppointmentController::class, 'show'])->name('appointments.show');
+    Route::patch('doctor/appointments/{id}/update-status', [AppointmentController::class, 'updateStatus'])->name('appointments.updateStatus');
+Route::patch('/appointments/{id}/note', [AppointmentController::class, 'updateNote'])->name('appointments.updateNote');
+Route::get('appointments/{appointment}/edit', [AppointmentController::class, 'edit'])->name('appointments.edit');
+Route::put('appointments/{appointment}', [AppointmentController::class, 'update'])->name('appointments.update');
+
+    // API Routes
+    Route::get('appointments/available-times/{doctorId}/{dayName}', [AppointmentController::class, 'getAvailableTimes'])
+        ->name('appointments.availableTimes');
+        
+    Route::get('appointments/fully-booked-dates/{doctorId}', [AppointmentController::class, 'getFullyBookedDates'])
+        ->name('appointments.fullyBookedDates');
+    Route::get('patient/create', [PatientController::class, 'create'])->name('patients.create'); // Show patient registration form
+    Route::post('patient', [PatientController::class, 'store'])->name('patients.store');         // Store new patient
 
 });
 
@@ -107,14 +118,14 @@ Route::get('login/google/callback', [App\Http\Controllers\Auth\LoginController::
 
 // Conversation routes
 // Route::post('/send-message', [MessageController::class, 'sendMessage']);
-Route::middleware(['auth'])->group(function () {
-    Route::get('/conversations/create', [ConversationController::class, 'create'])->name('conversations.create');
-    Route::post('/conversations', [ConversationController::class, 'store'])->name('conversations.store');
-    Route::get('/conversations/{conversation}', [ConversationController::class, 'show'])->name('conversations.show');
-    // Route::post('/conversations/{conversation}/messages', [MessageController::class, 'store'])->name('messages.store');
-});
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/conversations/create', [ConversationController::class, 'create'])->name('conversations.create');
+//     Route::post('/conversations', [ConversationController::class, 'store'])->name('conversations.store');
+//     Route::get('/conversations/{conversation}', [ConversationController::class, 'show'])->name('conversations.show');
+//     // Route::post('/conversations/{conversation}/messages', [MessageController::class, 'store'])->name('messages.store');
+// });
 
-Route::post('/chat/{conversation_id}/send', [ChatController::class, 'sendMessage'])->name('sendMessage');
+// Route::post('/chat/{conversation_id}/send', [ChatController::class, 'sendMessage'])->name('sendMessage');
 
 
 
@@ -161,9 +172,7 @@ Route::get('/doctor', function () {
     return view('landing.doctor');
 })->name('doctor');
 
-Route::get('/doctor-details', function () {
-    return view('landing.doctor-details');
-})->name('doctor-details');
+
 
 Route::get('/portfolio', function () {
     return view('landing.portfolio');
@@ -172,3 +181,18 @@ Route::get('/portfolio', function () {
 Route::get('/portfolio-details', function () {
     return view('landing.portfolio-details');
 })->name('portfolio-details');
+
+Route::get('/chatbot', function () {
+    return view('landing.chatbot');
+})->name('chatbot');
+//   Route::get('/appointment-view', function () {
+//     return view('landing.appointment');
+// })->name('appointment.view');
+
+    Route::get('/appointment', [App\Http\Controllers\UserAppointmentController::class, 'showAppointmentForm'])->name('appointments.form');
+    Route::post('/appointments/store', [App\Http\Controllers\UserAppointmentController::class, 'store'])->name('appointments.store');
+    Route::get('/appointments/available-times/{doctorId}/{dayName}', [App\Http\Controllers\UserAppointmentController::class, 'getAvailableTimes']);
+    Route::get('/appointments/fully-booked-dates', [App\Http\Controllers\UserAppointmentController::class, 'getFullyBookedDates']);
+    // Route::get('/appointments/all-doctors-times/{dayName}', [App\Http\Controllers\UserAppointmentController::class, 'getAllDoctorsAvailableTimes']);
+
+

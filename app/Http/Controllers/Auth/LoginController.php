@@ -14,8 +14,7 @@ class LoginController extends Controller
     {
         return Socialite::driver('google')->redirect();
     }
-
-  public function handleGoogleCallback()
+public function handleGoogleCallback()
 {
     try {
         $googleUser = Socialite::driver('google')->user();
@@ -31,11 +30,13 @@ class LoginController extends Controller
 
         Auth::login($user, true);
 
-        return redirect()->intended('/dashboard');
+                return redirect()->route('home'); 
+
 
     } catch (\Exception $e) {
-        return redirect('/login')->with('error', 'فشل تسجيل الدخول باستخدام Google.');
+        return redirect('/login')->with('error', 'Sign in with Google failed.');
     }
 }
+
 
 }

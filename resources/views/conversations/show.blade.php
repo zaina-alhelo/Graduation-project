@@ -4,7 +4,6 @@
     <div class="card">
         <div class="card-header">Conversation with Dr. </div>
         <div class="card-body chat-box">
-            <!-- عرض الرسائل -->
             <div class="messages">
                 @foreach ($conversation->messages as $message)
                     <div class="message @if($message->sender_id == auth()->id()) sent @else received @endif">
@@ -25,14 +24,12 @@
                 @endforeach
             </div>
 
-            <!-- نموذج الرسالة -->
             <form action="{{ route('messages.store', $conversation->id) }}" method="POST" enctype="multipart/form-data" id="message-form">
                 @csrf
                 <div class="form-group">
                     <textarea name="message" class="form-control" placeholder="Type your message"></textarea>
                 </div>
 
-                <!-- نموذج تسجيل الصوت -->
                 <div class="form-group voice-record">
                     <label for="voice">Record Voice Message</label>
                     <button type="button" id="start-recording" class="btn btn-info">
@@ -45,7 +42,6 @@
                     <input type="hidden" id="audio-file" name="audio_file">
                 </div>
 
-                <!-- نموذج رفع الملف -->
                 <div class="form-group">
                     <label for="file">Upload File</label>
                     <input type="file" name="file" class="form-control">
@@ -156,10 +152,8 @@
                     audioUrl = URL.createObjectURL(audioBlob);
                     audioPlayback.src = audioUrl;
                     
-                    // تحويل Blob إلى ملف للرفع
                     audioFile = new File([audioBlob], 'message.ogg', { type: 'audio/ogg' });
 
-                    // تعيين الملف إلى الحقل المخفي
                     audioFileInput.value = audioFile;
                 };
 

@@ -10,14 +10,11 @@ class ConversationController extends Controller
 {
     public function index()
 {
-    // عرض المحادثات الخاصة بالطبيب أو المريض
     $conversations = auth()->user()->conversationsAsDoctor()->orWhere('patient_id', auth()->id())->get();
     return view('conversations.index', compact('conversations'));
 }
 public function create()
 {
-    // جلب قائمة الأطباء لإنشاء المحادثة معهم
-    // تأكد أن لديك دور الطبيب أو فلتر لعرض الأطباء فقط
     $doctors = User::where('role', 'doctor')->get();
 
     return view('conversations.create', compact('doctors'));
@@ -28,7 +25,7 @@ public function create()
 public function show($id)
 {
     $conversation = Conversation::findOrFail($id);
-    $messages = $conversation->messages; // جلب جميع الرسائل في هذه المحادثة
+    $messages = $conversation->messages; 
     return view('conversations.show', compact('conversation', 'messages'));
 }
 
@@ -41,7 +38,8 @@ public function store(Request $request)
 
     $conversation = Conversation::create([
         'doctor_id' => $request->doctor_id,
-        'patient_id' => auth()->id(), // استخدم auth()->id() بدلاً من $request->patient_id
+        'patient_id' => auth()->id(),
+
         'status' => 'active',
     ]);
 

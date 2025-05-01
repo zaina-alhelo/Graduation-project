@@ -43,7 +43,13 @@
                 <div class="error-message d-block">{{ $message }}</div>
             @enderror
         </div>
-
+    <div class="input-group">
+    <label for="phone">Phone Number</label>
+    <input type="text" id="phone" name="phone" placeholder="Your phone number" value="{{ old('phone') }}">
+    @error('phone')
+        <div class="error-message d-block">{{ $message }}</div>
+    @enderror
+</div>
         <div class="input-group">
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Create a password">
@@ -51,13 +57,7 @@
                 <div class="error-message d-block">{{ $message }}</div>
             @enderror
         </div>
-        <div class="input-group">
-    <label for="phone">Phone Number</label>
-    <input type="text" id="phone" name="phone" placeholder="Your phone number" value="{{ old('phone') }}">
-    @error('phone')
-        <div class="error-message d-block">{{ $message }}</div>
-    @enderror
-</div>
+    
 
 
         <div class="password-strength">

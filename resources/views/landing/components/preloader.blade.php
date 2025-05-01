@@ -72,7 +72,30 @@
     <span id="scroll-percentage-value" data-default-color="var(--rr-color-900)" data-scroll-color="var(--rr-theme-primary)"></span>
 </div>
 <!-- Backtotop end -->
-
+<!-- Chatbot button start -->
+<div id="chat-bot-circle">
+    <button id="chat-bot-toggle" aria-label="Open chat">
+        <i class="fa-solid fa-comments"></i>
+    </button>
+    <div id="chat-bot-window" class="hidden">
+        <div class="chat-header">
+            <h4>OptiEye Assistant</h4>
+            <button id="chat-close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="chat-body">
+            <div class="chat-messages">
+                <div class="message bot">
+                    Hello! How can I help with your eye health questions today?
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your message..." aria-label="Type your message">
+                <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Chatbot button end -->
 <!-- Offcanvas area start -->
 <div class="fix">
     <div class="offcanvas__area">

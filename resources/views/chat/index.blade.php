@@ -24,7 +24,6 @@
             @endforeach
         </div>
 
-        <!-- إرسال رسالة جديدة -->
         <form method="POST" action="{{ route('sendMessage', $conversation->id) }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
