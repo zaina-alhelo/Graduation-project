@@ -59,24 +59,33 @@
                                     </li>
 
                                     @if (Route::has('login'))
-                                        @auth
-                                            <li class="has-dropdown {{ request()->routeIs('patient.dashboard') ? 'active' : '' }}">
-                                                <a href="javascript:void(0)">Account</a>
-                                                <ul class="submenu">
-                                                    <li class="{{ request()->routeIs('patient.dashboard') ? 'active' : '' }}">
-                                                        <a href="{{ route('patient.dashboard') }}">My Profile</a>
-                                                    </li>
-                                                    <li>
-                                                        <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
-                                                            @csrf
-                                                        </form>
-                                                        <a href="#" class="logout-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                            Log out
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        @endauth
+                                    @auth
+    <li class="has-dropdown 
+        {{ request()->routeIs('patient.dashboard') || request()->routeIs('doctor.dashboard') ? 'active' : '' }}">
+        <a href="javascript:void(0)">Account</a>
+        <ul class="submenu">
+            @if (auth()->user()->role === 'user')
+                <li class="{{ request()->routeIs('patient.dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('patient.dashboard') }}">My Profile</a>
+                </li>
+            @elseif (auth()->user()->role === 'doctor')
+                <li class="{{ request()->routeIs('doctor.dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('doctor.dashboard') }}">Dashboard</a>
+                </li>
+            @endif
+
+            <li>
+                <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
+                    @csrf
+                </form>
+                <a href="#" class="logout-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Log out
+                </a>
+            </li>
+        </ul>
+    </li>
+@endauth
+
                                     @endif
                                 </ul>
                             </nav>

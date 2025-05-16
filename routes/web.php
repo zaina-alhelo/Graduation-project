@@ -9,6 +9,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserAppointmentController;
+use App\Models\Message;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -64,6 +65,13 @@ Route::put('appointments/{appointment}', [AppointmentController::class, 'update'
     Route::get('patient/create', [PatientController::class, 'create'])->name('patients.create'); // Show patient registration form
     Route::post('patient', [PatientController::class, 'store'])->name('patients.store');         // Store new patient
 
+Route::get('/messages/{user}', [MessageController::class, 'index'])->name('message.index');
+    Route::post('/messages/{user}/send', [MessageController::class, 'send'])->name('message.send');
+    Route::post('/messages/{user}/mark-read', [MessageController::class, 'markAsRead'])->name('message.mark-read');
+    Route::get('/messages/unread-count', [MessageController::class, 'getUnreadCount'])->name('message.unread-count');
+    
+    // New route for checking read status of messages
+    Route::get('/messages/{user}/check-read-status', [MessageController::class, 'checkReadStatus'])->name('message.check-read-status');
 });
 
 

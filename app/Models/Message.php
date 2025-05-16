@@ -2,27 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
     use HasFactory;
-    protected $fillable = ['conversation_id', 'sender_id', 'message', 'file_path', 'message_type'];
-
-    public function conversation()
-    {
-        return $this->belongsTo(Conversation::class);
-    }
+     protected $fillable = [
+        'sender_id',
+        'receiver_id',
+        'message',
+        'attachment',
+        'type',
+    ];
 
     public function sender()
     {
         return $this->belongsTo(User::class, 'sender_id');
     }
-    public function broadcastOn()
-{
-    return new Channel('conversation.' . $this->conversation_id);
-}
 
+    public function receiver()
+    {
+        return $this->belongsTo(User::class, 'receiver_id');
+    }
 }

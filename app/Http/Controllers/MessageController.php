@@ -1,88 +1,174 @@
 <?php
 
-namespace App\Providers;
+namespace App\Http\Controllers;
 
-use App\Actions\Fortify\CreateNewUser;
-use App\Actions\Fortify\ResetUserPassword;
-use App\Actions\Fortify\UpdateUserPassword;
-use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Models\Message;
 use App\Models\User;
-use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\ServiceProvider;
-use App\Notifications\CustomVerifyEmail;
-use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\File;
+use Illuminate\Support\Facades\Crypt;
 
-class FortifyServiceProvider extends ServiceProvider
+class MessageController extends Controller
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
+ public function index(User $user)
     {
-        //
+        $authId = Auth::id();
+        $authUser = Auth::user();
+
+        Message::where('sender_id', $user->id)
+            ->where('receiver_id', $authId)
+            ->where('is_read', false)
+            ->update(['is_read' => true]);
+
+        $messages = Message::where(function ($query) use ($authId, $user) {
+            $query->where('sender_id', $authId)
+                ->where('receiver_id', $user->id);
+        })->orWhere(function ($query) use ($authId, $user) {
+            $query->where('sender_id', $user->id)
+                ->where('receiver_id', $authId);
+        })->orderBy('created_at')->get();
+        
+        foreach ($messages as $message) {
+            if ($message->message) {
+                try {
+                    $message->message = Crypt::decryptString($message->message);
+                } catch (\Exception $e) {
+                    $message->message = "[Unreadable message]";
+                }
+            }
+        }
+
+        if ($authUser->role === 'doctor') {
+            $users = User::where('role', 'user')->get();
+            return view('doctor.chats', compact('messages', 'user', 'users'));
+        } else {
+            $doctors = User::where('role', 'doctor')->get();
+            return view('chat.index', compact('messages', 'user', 'doctors'));
+        }
     }
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
+    public function send(Request $request, User $user)
     {
-        Fortify::createUsersUsing(CreateNewUser::class);
-        Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
-        Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
-        Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
+        try {
+            $request->validate([
+                'receiver_id' => 'required|exists:users,id',
+                'message'     => 'required_without:attachment|nullable|string',
+                'attachment'  => [
+                    'required_without:message',
+                    'nullable',
+                    File::types(['jpg', 'jpeg', 'png', 'gif', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'txt', 'ppt', 'pptx'])
+                        ->max(10 * 1024)
+                ],
+            ]);
 
-        Fortify::loginView(function () {
-            return view('auth.login');
-        });
+            $attachmentPath = null;
+            $type = 'text';
 
-        Fortify::registerView(function () {
-            return view('auth.register');
-        });
-
-        Fortify::requestPasswordResetLinkView(function () {
-            return view('auth.forgot-password');
-        });
-
-        Fortify::resetPasswordView(function ($request) {
-            return view('auth.reset-password', ['request' => $request]);
-        });
-
-        Fortify::verifyEmailView(function () {
-            return view('auth.verify-email');
-        });
-
-        User::created(function ($user) {
-            if (!$user->hasVerifiedEmail()) {
-                $user->notify(new CustomVerifyEmail($user)); 
-            }
-        });
-
-        RateLimiter::for('login', function (Request $request) {
-            $email = (string) $request->email;
-
-            return Limit::perMinute(5)->by($email.$request->ip());
-        });
-
-        RateLimiter::for('two-factor', function (Request $request) {
-            return Limit::perMinute(5)->by($request->session()->get('login.id'));
-        });
-
-       Fortify::resetPasswordView(function ($request) {
-            return view('auth.reset-password'); // يمكنك تخصيص الصفحة هنا
-        });
-
-        Fortify::requestPasswordResetLinkUsing(function (Request $request) {
-            $status = Password::sendResetLink($request->only('email'));
-            
-            if ($status == Password::RESET_LINK_SENT) {
-                return back()->with('status', 'We have sent a password reset link to your email.');
+            if ($request->hasFile('attachment') && $request->file('attachment')->isValid()) {
+                $file = $request->file('attachment');
+                
+                $extension = $file->getClientOriginalExtension();
+                
+                $attachmentPath = $file->store('messages', 'public');
+                
+                if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
+                    $type = 'image';
+                } else {
+                    $type = 'file';
+                }
+                
+                if (!$attachmentPath) {
+                    return response()->json([
+                        'success' => false, 
+                        'message' => 'Failed to store file. Please try again.'
+                    ], 500);
+                }
             }
             
-            return back()->withErrors(['email' => trans($status)]);
-        });
+            $encryptedMessage = $request->message ? Crypt::encryptString($request->message) : null;
+
+            $message = Message::create([
+                'sender_id'   => Auth::id(),
+                'receiver_id' => $request->receiver_id,
+                'message'     => $encryptedMessage,
+                'attachment'  => $attachmentPath,
+                'type'        => $type,
+                'is_read'     => false,
+            ]);
+
+            $message->load('sender', 'receiver');
+            
+            $responseMessage = $message->toArray();
+            $responseMessage['message'] = $request->message;
+
+            return response()->json(['success' => true, 'message' => $responseMessage]);
+            
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'errors' => $e->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred while processing your request: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
+
+   
+    // Method to mark messages as read via AJAX
+    public function markAsRead(User $user)
+    {
+        $authId = Auth::id();
+        
+        $updated = Message::where('sender_id', $user->id)
+                ->where('receiver_id', $authId)
+                ->where('is_read', false)
+                ->update(['is_read' => true]);
+                
+        return response()->json([
+            'success' => true,
+            'count' => $updated
+        ]);
+    }
+    
+    // Method to get unread message count
+    public function getUnreadCount()
+    {
+        $authId = Auth::id();
+        
+        $counts = Message::where('receiver_id', $authId)
+                ->where('is_read', false)
+                ->selectRaw('sender_id, COUNT(*) as count')
+                ->groupBy('sender_id')
+                ->get()
+                ->pluck('count', 'sender_id')
+                ->toArray();
+                
+        return response()->json([
+            'success' => true,
+            'counts' => $counts
+        ]);
+    }
+    
+    // New method to check read status of messages
+    public function checkReadStatus(User $user)
+    {
+        $authId = Auth::id();
+        
+        // Get all messages sent by authenticated user to this user
+        $messages = Message::where('sender_id', $authId)
+                ->where('receiver_id', $user->id)
+                ->select('id', 'is_read')
+                ->get();
+                
+        return response()->json([
+            'success' => true,
+            'messages' => $messages
+        ]);
     }
 }

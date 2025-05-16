@@ -56,6 +56,13 @@
     </a>
 </li><!-- End Manage Appointments Nav -->
 
+    <li class="nav-item">
+  <a class="nav-link collapsed" href="{{ route('message.index', Auth::user()->id) }}">
+    <i class="bi bi-chat-dots"></i>
+    <span>Chats</span>
+  </a>
+</li>
+  
       <li class="nav-item">
         <a class="nav-link collapsed" href="users-profile.html">
           <i class="bi bi-person"></i>

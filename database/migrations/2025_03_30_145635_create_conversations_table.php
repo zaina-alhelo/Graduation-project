@@ -15,7 +15,7 @@ return new class extends Migration
         $table->id();
         $table->unsignedBigInteger('patient_id');
         $table->unsignedBigInteger('doctor_id');
-        $table->string('status')->default('active'); // active, archived, etc.
+        $table->string('status')->default('active'); 
         $table->timestamps();
 
         $table->foreign('patient_id')->references('id')->on('users')->onDelete('cascade');
