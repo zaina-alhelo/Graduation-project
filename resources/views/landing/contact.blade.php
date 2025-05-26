@@ -32,7 +32,7 @@
             <div class="row align-items-end mb-60 mb-sm-50 mb-xs-40">
                 <div class="col-lg-6">
                     <div class="section__title-wrapper">
-                        <h5 class="section__subtitle color-theme-primary mb-15 mb-xs-10 title-animation"><img src="{{ asset('landing/assets/imgs/ask-quesiton/heart.png')}}" alt="icon not found" class="img-fluid"> Take Appointment</h5>
+                        <h5 class="section__subtitle color-theme-primary mb-15 mb-xs-10 title-animation">Take Appointment</h5>
                         <h2 class="section__title mb-0 title-animation">Radiant Resilience Your Wellness Your Strength</h2>
                     </div>
                 </div>
@@ -72,8 +72,8 @@
                                 <i class="fa-solid fa-location-dot"></i>
                             </div>
                             <div class="pricing-appointment__contact-item-text">
-                                <p>6391 Elgin St. Celina, Delaware </p>
-                                <h5 class="mb-0"><a href="https://maps.app.goo.gl/1N77c8d8zieLRaot7">Kentucky</a></h5>
+                                <p>8181 Amman,  Khalda st </p>
+                                <h5 class="mb-0"><a href="https://maps.app.goo.gl/1N77c8d8zieLRaot7">Jordan</a></h5>
                             </div>
                         </div>
                     </div>
@@ -83,33 +83,33 @@
                     <form id="pricing-appointment__form"  method="POST" action="./mail.php" class="pricing-appointment__form mt-md-60 mt-sm-60 mt-xs-60">
                         <div class="row">
                             <div class="col-sm-6">
-                                <div class="pricing-appointment__form-input">
-                                    <input name="name" id="name" type="text" placeholder="Your name">
+                                <div class="pricing-appointment__form-input shadow-sm">
+                                    <input name="name" id="name" type="text" placeholder="Your name" style="box-shadow: 0 3px 10px rgba(0,0,0,0.08);">
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="pricing-appointment__form-input">
-                                    <input name="email" id="email" type="text" placeholder="Your email">
+                                <div class="pricing-appointment__form-input shadow-sm">
+                                    <input name="email" id="email" type="text" placeholder="Your email" style="box-shadow: 0 3px 10px rgba(0,0,0,0.08);">
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="pricing-appointment__form-input">
-                                    <input name="phone" id="phone" type="text" placeholder="Phone">
+                                <div class="pricing-appointment__form-input shadow-sm">
+                                    <input name="phone" id="phone" type="text" placeholder="Phone" style="box-shadow: 0 3px 10px rgba(0,0,0,0.08);">
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="pricing-appointment__form-select">
-                                    <select name="doctor" id="doctor">
+                                <div class="pricing-appointment__form-select shadow-sm">
+                                    <select name="doctor" id="doctor" style="box-shadow: 0 3px 10px rgba(0,0,0,0.08);">
                                         <option>Choose a Doctor</option>
-                                        <option>Dr. Rana</option>
-                                        <option>Dr. Sabbir</option>
-                                        <option>Dr. Rubel</option>
+                                        <option>Dr. Yousef</option>
+                                        <option>Dr. Khaled</option>
+                                        <option>Dr. Rami</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm-12">
-                                <div class="pricing-appointment__form-input">
-                                    <textarea name="textarea" id="textarea" placeholder="Messege"></textarea>
+                                <div class="pricing-appointment__form-input shadow-sm">
+                                    <textarea name="textarea" id="textarea" placeholder="Messege" style="box-shadow: 0 3px 10px rgba(0,0,0,0.08);"></textarea>
                                 </div>
                             </div>
 

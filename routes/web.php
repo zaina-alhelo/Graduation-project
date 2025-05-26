@@ -193,6 +193,31 @@ Route::get('/portfolio-details', function () {
 Route::get('/chatbot', function () {
     return view('landing.chatbot');
 })->name('chatbot');
+
+Route::get('/drAnas', function () {
+    return view('landing.drAnas');
+})->name('drAnas');
+
+Route::get('/drYousef', function () {
+    return view('landing.drYousef');
+})->name('drYousef');
+
+Route::get('/drAhmad', function () {
+    return view('landing.drAhmad');
+})->name('drAhmad');
+
+Route::get('/drKhaled', function () {
+    return view('landing.drKhaled');
+})->name('drKhaled');
+
+Route::get('/drNoor', function () {
+    return view('landing.drNoor');
+})->name('drNoor');
+
+Route::get('/drRami', function () {
+    return view('landing.drRami');
+})->name('drRami');
+
 //   Route::get('/appointment-view', function () {
 //     return view('landing.appointment');
 // })->name('appointment.view');
