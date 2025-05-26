@@ -1,45 +1,13 @@
-
-<section class="footer__cta footer__cta-bottom-up">
-    <div class="container">
-        <div class="row mb-minus-30">
-            <div class="col-md-6">
-                <div class="footer__cta-item mb-30 theme-bg-primary d-flex flex-lg-row flex-column align-items-lg-center">
-                    <div class="footer__cta-item-icon d-flex align-items-center justify-content-center">
-                        <img class="img-fluid" src="{{asset('landing/assets/imgs/footer__cta/footer__cta-item-1.png')  }}" alt="icon not found">
-                    </div>
-
-                    <div class="footer__cta-item-text">
-                        <h4 class="color-white mb-15 mb-10">Early Detection Saves Sight</h4>
-                        <p class="color-white mb-0">Our AI technology can detect eye diseases up to 18 months earlier than traditional methods, when treatment is most effective and vision loss can still be prevented.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="footer__cta-item mb-30 theme-bg-glow d-flex flex-lg-row flex-column align-items-lg-center">
-                    <div class="footer__cta-item-icon d-flex align-items-center justify-content-center">
-                        <img class="img-fluid" src="{{asset('landing/assets/imgs/footer__cta/footer__cta-item-2.png')  }}" alt="icon not found">
-                    </div>
-
-                    <div class="footer__cta-item-text">
-                        <h4 class="color-white mb-15 mb-10">Advanced AI Technology</h4>
-                        <p class="color-white mb-0">Our machine learning algorithms have been trained on millions of eye scans to provide accurate diagnosis comparable to experienced ophthalmologists.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <!-- Footer area start -->
 <footer>
-    <section class="footer__area-common white-bg overflow-hidden theme-bg-color-100" data-background="{{ asset('landing/assets/imgs/footer/background.png') }}">
+    <section class="footer__area-common white-bg overflow-hidden theme-bg-color-100" data-background="assets/imgs/footer/background.png">
         <div class="container">
             <div class="row mb-minus-50">
                 <div class="col-lg-3 col-6">
                     <div class="footer__widget footer__widget-item-1">
                         <div class="footer__logo mb-30 mb-xs-25">
-                            <a href="{{route('home')}}">
-                                <img src="{{ asset('landing/assets/imgs/footer__cta/footer__cta-item-1.png') }}" alt="icon not found">
+                            <a href="index.html">
+                                <img class="img-fluid" src="{{ asset('landing/images/logoff.png') }}" alt="OptiEye logo">
                             </a>
                         </div>
 
@@ -66,10 +34,10 @@
                         </div>
                         <div class="footer__link">
                             <ul>
-                                <li><a href="service.html">AI Eye Scans</a></li>
-                                <li><a href="service.html">Disease Detection</a></li>
-                                <li><a href="service.html">Vision Monitoring</a></li>
-                                <li><a href="service.html">Teleophthalmology</a></li>
+                                <li><a href="{{ route('service') }}">AI Eye Scans</a></li>
+                                <li><a href="{{ route('service') }}">Disease Detection</a></li>
+                                <li><a href="{{ route('service') }}">Vision Monitoring</a></li>
+                                <li><a href="{{ route('service') }}">Teleophthalmology</a></li>
                             </ul>
                         </div>
                     </div>
@@ -121,15 +89,15 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="footer__copyright text-lg-start text-center">
-                                <p class="mb-0">© <a href="{{route('home')}}">OptiEye</a> 2025 | All Rights Reserved</p>
+                                <p class="mb-0">© <a href="index.html">OptiEye</a> 2025 | All Rights Reserved</p>
                             </div>
                         </div>
 
                         <div class="col-lg-6">
                             <div class="footer__copyright-menu">
                                 <ul>
-                                    <li><a href="{{route('about-us')}}">Terms & Conditions</a></li>
-                                    <li><a href="{{route('about-us')}}">Privacy Policy</a></li>
+                                    <li><a href="about-us.html">Terms & Conditions</a></li>
+                                    <li><a href="about-us.html">Privacy Policy</a></li>
                                     <li><a href="contact.html">Contact Us</a></li>
                                 </ul>
                             </div>
@@ -165,8 +133,9 @@
 <script src="{{ asset('landing/assets/js/plugins/smoothscroll.js') }}"></script>
 <script src="{{ asset('landing/assets/js/vendor/ajax-form.js') }}"></script>
 <script src="{{ asset('landing/assets/js/main.js') }}"></script>
+
+<!-- Chatbot functionality -->
 <script>
-// Chatbot functionality
 document.addEventListener('DOMContentLoaded', function() {
     const chatToggle = document.getElementById('chat-bot-toggle');
     const chatWindow = document.getElementById('chat-bot-window');
@@ -226,6 +195,178 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+
+<!-- Appointment calendar -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize calendar
+        const calendarEl = document.getElementById('appointment-calendar');
+        if (calendarEl) {
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next',
+                    center: 'title',
+                    right: 'today'
+                },
+                selectable: true,
+                selectConstraint: {
+                    start: new Date(),
+                    end: new Date(new Date().setMonth(new Date().getMonth() + 3))
+                },
+                selectAllow: function(info) {
+                    // Only allow future dates
+                    return info.start >= new Date().setHours(0,0,0,0);
+                },
+                dateClick: function(info) {
+                    // Reset previous selections
+                    document.querySelectorAll('.fc-day').forEach(day => {
+                        day.classList.remove('selected-day');
+                    });
+                    
+                    // Only allow future dates
+                    const clickedDate = new Date(info.dateStr);
+                    const today = new Date();
+                    today.setHours(0,0,0,0);
+                    
+                    if (clickedDate >= today) {
+                        info.dayEl.classList.add('selected-day');
+                        displayAvailableTimeSlots(info.dateStr);
+                        
+                        // Update the displayed selected date
+                        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                        document.getElementById('displaySelectedDate').textContent = 'Selected Date';
+                        document.getElementById('displayFormattedDate').textContent = new Date(info.dateStr).toLocaleDateString('en-US', options);
+                    }
+                }
+            });
+            calendar.render();
+            
+            // Handle "Today" button click
+            const todayButton = document.getElementById('todayButton');
+            if (todayButton) {
+                todayButton.addEventListener('click', function() {
+                    calendar.today();
+                    
+                    // Simulate click on today's date
+                    const today = new Date();
+                    const dateStr = today.toISOString().slice(0, 10);
+                    const todayCell = document.querySelector(`.fc-day[data-date="${dateStr}"]`);
+                    if (todayCell) {
+                        todayCell.click();
+                    }
+                });
+            }
+        }
+        
+        // Function to display available time slots
+        function displayAvailableTimeSlots(dateStr) {
+            // Clear any previously selected time
+            document.querySelectorAll('.time-slot-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Hide confirmation section
+            const selectedDateTime = document.getElementById('selectedDateTime');
+            if (selectedDateTime) {
+                selectedDateTime.classList.add('d-none');
+            }
+            
+            // Sample time slots - in a real app, you would fetch these from your backend
+            const morningSlots = ['9:00 AM', '10:00 AM', '11:00 AM'];
+            const afternoonSlots = ['1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM'];
+            
+            // Populate morning slots
+            const morningContainer = document.getElementById('morningSlots');
+            if (morningContainer) {
+                morningContainer.innerHTML = '';
+                
+                if (morningSlots.length > 0) {
+                    morningSlots.forEach(time => {
+                        const button = document.createElement('button');
+                        button.className = 'time-slot-btn';
+                        button.textContent = time;
+                        button.addEventListener('click', function() {
+                            selectTimeSlot(this, dateStr, time);
+                        });
+                        morningContainer.appendChild(button);
+                    });
+                } else {
+                    morningContainer.innerHTML = '<p class="text-muted">No morning appointments available</p>';
+                }
+            }
+            
+            // Populate afternoon slots
+            const afternoonContainer = document.getElementById('afternoonSlots');
+            if (afternoonContainer) {
+                afternoonContainer.innerHTML = '';
+                
+                if (afternoonSlots.length > 0) {
+                    afternoonSlots.forEach(time => {
+                        const button = document.createElement('button');
+                        button.className = 'time-slot-btn';
+                        button.textContent = time;
+                        button.addEventListener('click', function() {
+                            selectTimeSlot(this, dateStr, time);
+                        });
+                        afternoonContainer.appendChild(button);
+                    });
+                } else {
+                    afternoonContainer.innerHTML = '<p class="text-muted">No afternoon appointments available</p>';
+                }
+            }
+            
+            // Show/hide "no times" message
+            const noTimesMessage = document.getElementById('noTimesMessage');
+            if (noTimesMessage) {
+                if (morningSlots.length === 0 && afternoonSlots.length === 0) {
+                    noTimesMessage.classList.remove('d-none');
+                } else {
+                    noTimesMessage.classList.add('d-none');
+                }
+            }
+        }
+        
+        // Function to handle time slot selection
+        function selectTimeSlot(button, dateStr, time) {
+            // Reset all buttons
+            document.querySelectorAll('.time-slot-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            // Mark this button as selected
+            button.classList.add('selected');
+            
+            // Update the confirmation section
+            const selectedDateTime = document.getElementById('selectedDateTime');
+            if (selectedDateTime) {
+                selectedDateTime.classList.remove('d-none');
+                
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                const selectedDate = document.getElementById('selectedDate');
+                const selectedTime = document.getElementById('selectedTime');
+                
+                if (selectedDate) selectedDate.textContent = new Date(dateStr).toLocaleDateString('en-US', options);
+                if (selectedTime) selectedTime.textContent = time;
+                
+                // Scroll to the confirmation section
+                selectedDateTime.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Handle confirmation button click
+        const confirmTimeBtn = document.getElementById('confirmTimeBtn');
+        if (confirmTimeBtn) {
+            confirmTimeBtn.addEventListener('click', function() {
+                // In a real app, you would send the selected date and time to your backend
+                alert('Appointment confirmed! You would be redirected to a confirmation page in a real app.');
+                // window.location.href = '/appointment/confirm?date=' + selectedDate + '&time=' + selectedTime;
+            });
+        }
+    });
+</script>
+
 @yield('scripts')
 </body>
 

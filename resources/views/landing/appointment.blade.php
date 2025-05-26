@@ -375,58 +375,8 @@
                     </div>
                 </div>
 
-                <!-- Appointment Process Steps -->
-                <div class="row mt-5">
-                    <div class="col-12">
-                        <div class="section__title-wrapper text-center mb-4">
-                            <h4 class="section__title">How It Works</h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card text-center h-100 p-4 how-it-works-card">
-                            <div class="rounded-circle bg-primary text-white mx-auto d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                                <i class="fa-solid fa-calendar-plus fa-xl"></i>
-                            </div>
-                            <div class="card-body">
-                                <h5>Book</h5>
-                                <p>Select your preferred date and time slot for your eye examination</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card text-center h-100 p-4 how-it-works-card">
-                            <div class="rounded-circle bg-primary text-white mx-auto d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                                <i class="fa-solid fa-envelope-open-text fa-xl"></i>
-                            </div>
-                            <div class="card-body">
-                                <h5>Confirm</h5>
-                                <p>Receive email confirmation with details about your appointment</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card text-center h-100 p-4 how-it-works-card">
-                            <div class="rounded-circle bg-primary text-white mx-auto d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                                <i class="fa-solid fa-stethoscope fa-xl"></i>
-                            </div>
-                            <div class="card-body">
-                                <h5>Contact</h5>
-                                <p>Speak with your doctor to know your condition</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="card text-center h-100 p-4 how-it-works-card">
-                            <div class="rounded-circle bg-primary text-white mx-auto d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                                <i class="fa-solid fa-clipboard-check fa-xl"></i>
-                            </div>
-                            <div class="card-body">
-                                <h5>Follow-up</h5>
-                                <p>Receive your diagnosis and personalized care plan</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
+             
             </div>
         </div>
     </section>

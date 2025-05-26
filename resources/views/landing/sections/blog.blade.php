@@ -1,4 +1,4 @@
-    <!-- blog area start -->
+<!-- blog area start -->
     <section class="blog section-space__bottom">
         <div class="container">
             <div class="row">
@@ -18,11 +18,9 @@
                         </a>
 
                         <div class="blog__item-content">
-                            <div class="blog__item-content-date mb-15 mb-xs-10"><i class="fa-solid fa-calendar-days"></i> <span>April 17, 2025</span></div>
+                            <div class="blog__item-content-date mb-15 mb-xs-10"><i class="fa-solid fa-calendar-days"></i> <span>Oct 30, 2025</span></div>
                             <h4 class="mb-15 mb-xs-10"><a href="blog-details.html">Optimal Oasis Nurturing Health in Every Aspect</a></h4>
                             <p class="mb-40 mb-xs-30">Explore the dynamic commerce through our insightful blogs. Learn Explore the dynamic</p>
-
-                            <a class="rr-a-btn" href="blog-details.html">View More <i class="fa-solid fa-circle-plus"></i></a>
                         </div>
                     </div>
                 </div>
@@ -35,11 +33,9 @@
                         </a>
 
                         <div class="blog__item-content">
-                            <div class="blog__item-content-date mb-15 mb-xs-10"><i class="fa-solid fa-calendar-days"></i> <span>April 17, 2025</span></div>
+                            <div class="blog__item-content-date mb-15 mb-xs-10"><i class="fa-solid fa-calendar-days"></i> <span>Oct 30, 2025</span></div>
                             <h4 class="mb-15 mb-xs-10"><a href="blog-details.html">Embark on Health Wellness Begins</a></h4>
                             <p class="mb-40 mb-xs-30">Explore the dynamic commerce through our insightful blogs. Learn Explore the dynamic</p>
-
-                            <a class="rr-a-btn" href="blog-details.html">View More <i class="fa-solid fa-circle-plus"></i></a>
                         </div>
                     </div>
                 </div>
@@ -52,11 +48,9 @@
                         </a>
 
                         <div class="blog__item-content">
-                            <div class="blog__item-content-date mb-15 mb-xs-10"><i class="fa-solid fa-calendar-days"></i> <span>April 17, 2025</span></div>
+                            <div class="blog__item-content-date mb-15 mb-xs-10"><i class="fa-solid fa-calendar-days"></i> <span>Oct 30, 2025</span></div>
                             <h4 class="mb-15 mb-xs-10"><a href="blog-details.html">Flourishing Healthier Revive Radiance</a></h4>
                             <p class="mb-40 mb-xs-30">Explore the dynamic commerce through our insightful blogs. Learn Explore the dynamic</p>
-
-                            <a class="rr-a-btn" href="blog-details.html">View More <i class="fa-solid fa-circle-plus"></i></a>
                         </div>
                     </div>
                 </div>

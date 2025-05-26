@@ -8,7 +8,7 @@
     <meta name="description" content="OptiEye - Advanced AI eye diagnosis technology">
     <meta name="author" content="abj3fr">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" type="image/x-icon" href="{{ asset('landing/assets/imgs/favicon.svg') }}">
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('landing/images/faviconf.ico') }}">
 <link rel="stylesheet" href="{{ asset('landing/assets/css/vendor/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('landing/assets/css/vendor/animate.min.css') }}">
 <link rel="stylesheet" href="{{ asset('landing/assets/css/plugins/swiper.min.css') }}">
@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="{{ asset('landing/assets/css/btn.css') }}">
 <link rel="stylesheet" href="{{ asset('landing/assets/css/chatbot.css') }}">
 <link rel="stylesheet" href="{{ asset('landing/assets/css/chatbotp.css') }}">
+<link rel="stylesheet" href="{{ asset('landing/assets/css/appointment.css') }}">
 
 
   @yield('styles')

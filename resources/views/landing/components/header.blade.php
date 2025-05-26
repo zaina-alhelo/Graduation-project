@@ -16,7 +16,7 @@
                     <div class="header__logo">
                         <a href="{{route('home')}}">
                             <div class="logo">
-                                <img src="{{ asset('landing/assets/imgs/logo/logo.svg') }}" alt="OptiEye logo">
+                                <img src="{{ asset('landing/images/logoff.png') }}" alt="OptiEye logo">
                             </div>
                         </a>
                     </div>
@@ -38,12 +38,8 @@
                                         </ul>
                                     </li>
 
-                                    <li class="has-dropdown {{ request()->routeIs('service') || request()->routeIs('service-details') ? 'active' : '' }}">
-                                        <a href="javascript:void(0)">Services</a>
-                                        <ul class="submenu">
-                                            <li class="{{ request()->routeIs('service') ? 'active' : '' }}"><a href="{{route('service')}}">Eye Diagnostics</a></li>
-                                            <li class="{{ request()->routeIs('service-details') ? 'active' : '' }}"><a href="{{route('service-details')}}">Diagnostic Details</a></li>
-                                        </ul>
+                                    <li class="{{ request()->routeIs('service') ? 'active' : '' }}">
+                                        <a href="{{route('service')}}">Services</a>
                                     </li>
 
                                     <li class="{{ request()->routeIs('doctor') ? 'active' : '' }}">
@@ -96,18 +92,17 @@
                         @guest
                             <div class="header__right">
                                 <div class="header__action d-flex align-items-center">
-                                    <div class="header__auth-buttons me-4">
-                                        <a href="{{ route('login') }}" class="auth-btn login-btn me-2">
+                            <div class="header__auth-buttons me-4 d-none d-lg-flex">
+                                <a href="{{route('login')}}" class="auth-btn login-btn me-2" style="min-width: 90px; text-align: center; padding: 10px 15px;">
                                             <i class="fa-solid fa-user"></i> Log In
                                         </a>
                                         @if (Route::has('register'))
-                                            <a href="{{ route('register') }}" class="auth-btn signup-btn">
+                                <a href="{{route('register')}}" class="auth-btn signup-btn" style="min-width: 90px; text-align: center; padding: 10px 15px;">
                                                 <i class="fa-solid fa-user-plus"></i> Sign Up
                                             </a>
                                         @endif
                                     </div>
-                                </div>
-                            </div>
+                               
                         @endguest
                     @endif
 
@@ -124,5 +119,7 @@
             </div>
         </div>
     </div>
+     </div>
+                            </div>
 </header>
 <!-- Header area end -->

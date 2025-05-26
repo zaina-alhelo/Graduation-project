@@ -3,7 +3,7 @@
 @section('content')
    <!-- Breadcrumb area start  -->
     <div class="breadcrumb__area header__background-color breadcrumb__header-up breadcrumb-space overly overflow-hidden">
-        <div class="breadcrumb__background" data-background="images/faqs.png"></div>
+        <div class="breadcrumb__background" data-background="{{ asset('landing/images/faqs.png') }}"></div>
         <div class="container">
             <div class="row align-items-center justify-content-between">
                 <div class="col-12">
@@ -23,9 +23,9 @@
             </div>
         </div>
     </div>
-    <!-- Breadcrumb area start  -->
+    <!-- Breadcrumb area end  -->
 
-    <!-- faq-page area start  -->
+   <!-- faq-page area start  -->
     <section class="faq-page section-space">
         <div class="container">
             <div class="row" id="accordionExample">
@@ -175,109 +175,7 @@
     </section>
     <!-- faq-page area start  -->
 
-    <!-- pricing-appointment area start  -->
-    <section class="pricing-appointment section-space__bottom">
-        <div class="container">
-            <div class="row align-items-end mb-60 mb-sm-50 mb-xs-40">
-                <div class="col-lg-6">
-                    <div class="section__title-wrapper">
-                        <h5 class="section__subtitle color-theme-primary mb-15 mb-xs-10 title-animation"><img src="{{ asset('landing/assets/imgs/ask-quesiton/heart.png ')}}" alt="icon not found" class="img-fluid"> Expert Consultation</h5>
-                        <h2 class="section__title mb-0 title-animation">Get Professional Insight on Your Eye Health</h2>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="pricing-appointment__content-right mt-md-25 mt-sm-25 mt-xs-25">
-                        <p class="mb-0">Have questions about your AI diagnosis results? Connect with our experienced ophthalmologists for personalized review, detailed explanation, and treatment recommendations. Our specialists can provide further insights beyond what AI detection offers.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="pricing-appointment__contact-item__wrap d-flex flex-column">
-                        <div class="pricing-appointment__contact-item d-flex align-items-end">
-                            <div class="pricing-appointment__contact-item-icon d-flex align-items-center justify-content-center">
-                                <i class="fa-solid fa-phone"></i>
-                            </div>
-                            <div class="pricing-appointment__contact-item-text">
-                                <p>Technical Support:</p>
-                                <h5 class="mb-0"><a href="tel:6295550129">(629) 555-0129</a></h5>
-                            </div>
-                        </div>
-
-                        <div class="pricing-appointment__contact-item d-flex align-items-end">
-                            <div class="pricing-appointment__contact-item-icon d-flex align-items-center justify-content-center">
-                                <i class="fa-solid fa-clock"></i>
-                            </div>
-                            <div class="pricing-appointment__contact-item-text">
-                                <p>Online Support Hours:</p>
-                                <h5 class="mb-0">24/7 AI Analysis | 8am-8pm Consultations</h5>
-                            </div>
-                        </div>
-
-                        <div class="pricing-appointment__contact-item d-flex align-items-end">
-                            <div class="pricing-appointment__contact-item-icon d-flex align-items-center justify-content-center">
-                                <i class="fa-solid fa-envelope"></i>
-                            </div>
-                            <div class="pricing-appointment__contact-item-text">
-                                <p>Email Support</p>
-                                <h5 class="mb-0"><a href="mailto:optieyesup@gmail.com">optieyesup@gmail.com</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-8">
-                    <form id="pricing-appointment__form" method="POST" action="./mail.php" class="pricing-appointment__form mt-md-60 mt-sm-60 mt-xs-60">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="pricing-appointment__form-input">
-                                    <input name="name" id="name" type="text" placeholder="Your full name">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="pricing-appointment__form-input">
-                                    <input name="email" id="email" type="text" placeholder="Your email address">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="pricing-appointment__form-input">
-                                    <input name="phone" id="phone" type="text" placeholder="Phone number">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="pricing-appointment__form-select">
-                                    <select name="consultType" id="consultType">
-                                        <option>Type of Consultation</option>
-                                        <option>AI Results Review</option>
-                                        <option>General Eye Health</option>
-                                        <option>Follow-up Discussion</option>
-                                        <option>Treatment Options</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="pricing-appointment__form-input">
-                                    <textarea name="textarea" id="textarea" placeholder="Please briefly describe your eye condition or concerns"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <button type="submit" class="rr-btn rr-btn__primary-color mt-0">
-                                    <span class="btn-wrap">
-                                        <span class="text-one">Request Consultation</span>
-                                        <span class="text-two">Request Consultation</span>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- pricing-appointment area start  -->
+   
 @endsection
 
 

@@ -1,12 +1,11 @@
-
-    <!-- service area start -->
+<!-- service area start -->
     <section class="service service__space">
-        <div class="container">
+        <div class="container">  
             <div class="row mb-40">
                 <div class="col-12">
                     <div class="section__title-wrapper text-center">
-                        <h2 class="section__title mb-20 mb-xs-15 title-animation">Our Specialized Eye Care Services</h2>
-                        <p class="mb-0">Comprehensive eye care solutions using the latest technology and expertise</p>
+                        <h2 class="section__title mb-20 mb-xs-15 title-animation">Doctor-Assisted AI Diagnosis</h2>
+                        <p class="mb-0">Our specialists upload and analyze your eye scans, providing personalized care and guidance throughout your treatment</p>
                     </div>
                 </div>
             </div>
@@ -14,58 +13,61 @@
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <div class="service__item mb-30">
                         <div class="service__item-icon mb-20 mb-xs-15">
-                            <img src="  {{ asset('landing/assets/imgs/service/service__item-1.png') }}" alt="AI Diagnostic icon">
-                          
+                            <i class="fa-solid fa-upload fa-3x" style="color: var(--rr-theme-primary);"></i>
                         </div>
 
-                        <h4 class="mb-25 mb-xs-20"><a href="service-details.html">AI Eye Diagnosis</a></h4>
+                        <h4 class="mb-25 mb-xs-20"><a href="{{ route('service') }}">Doctor Image Upload</a></h4>
 
-                        <p class="mb-40 mb-xs-30">Upload your eye images for instant AI-powered analysis detecting common conditions and abnormalities</p>
+                        <p class="mb-40 mb-xs-30">Your doctor uploads high-resolution eye scans to our secure platform for detailed AI analysis and their expert review</p>
 
-                        <a class="rr-a-btn" href="diagnose.html">Try Now <i class="fa-solid fa-circle-plus"></i></a>
+                        <a class="rr-a-btn" href="{{ route('service') }}">Learn More <i class="fa-solid fa-circle-plus"></i></a>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <div class="service__item mb-30">
                         <div class="service__item-icon mb-20 mb-xs-15">
-                            <img src="{{ asset('landing/assets/imgs/service/service__item-2.png') }}" alt="Consultation icon">
+                            <i class="fa-solid fa-comments fa-3x" style="color: var(--rr-theme-primary);"></i>
                         </div>
 
-                        <h4 class="mb-25 mb-xs-20"><a href="service-details.html">Expert Consultation</a></h4>
+                        <h4 class="mb-25 mb-xs-20"><a href="{{ route('service') }}">Direct Communication</a></h4>
 
-                        <p class="mb-40 mb-xs-30">Connect with our ophthalmologists for in-depth evaluation and personalized treatment</p>
+                        <p class="mb-40 mb-xs-30">Stay connected with your eye specialist through our integrated messaging system for questions and updates on your diagnosis</p>
 
-                        <a class="rr-a-btn" href="service-details.html">Learn More <i class="fa-solid fa-circle-plus"></i></a>
+                        <a class="rr-a-btn" href="{{ route('service') }}">Learn More <i class="fa-solid fa-circle-plus"></i></a>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <div class="service__item mb-30">
                         <div class="service__item-icon mb-20 mb-xs-15">
-                            <img src="{{ asset('landing/assets/imgs/service/service__item-3.png') }}" alt="Treatment icon">
+                            <i class="fa-solid fa-brain fa-3x" style="color: var(--rr-theme-primary);"></i>
                         </div>
 
-                        <h4 class="mb-25 mb-xs-20"><a href="service-details.html">Advanced Treatment</a></h4>
+                        <h4 class="mb-25 mb-xs-20"><a href="{{ route('service') }}">AI-Diagnosis</a></h4>
 
-                        <p class="mb-40 mb-xs-30">State-of-the-art treatments for cataracts, glaucoma, macular degeneration, and other eye conditions.</p>
+                        <p class="mb-40 mb-xs-30">Our ophthalmologists combine AI analysis with their expertise to provide accurate diagnoses and personalized treatment plans</p>
 
-                        <a class="rr-a-btn" href="service-details.html">Learn More <i class="fa-solid fa-circle-plus"></i></a>
+                        <a class="rr-a-btn" href="{{ route('service') }}">Learn More <i class="fa-solid fa-circle-plus"></i></a>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <div class="service__item mb-30">
                         <div class="service__item-icon mb-20 mb-xs-15">
-                            <img src="{{ asset('landing/assets/imgs/service/service__item-4.png') }}" alt="Prevention icon">
+                            <i class="fa-solid fa-user-doctor fa-3x" style="color: var(--rr-theme-primary);"></i>
                         </div>
 
-                        <h4 class="mb-25 mb-xs-20"><a href="service-details.html">Preventive Care</a></h4>
+                        <h4 class="mb-25 mb-xs-20"><a href="{{ route('service') }}">Continuous Care</a></h4>
 
-                        <p class="mb-40 mb-xs-30">Regular eye check-ups, lifestyle guidance, and early intervention strategies to maintain optimal eye health.</p>
+                        <p class="mb-40 mb-xs-30">Receive ongoing follow-up care as your doctor monitors your progress, and provides preventive guidance</p>
 
-                        <a class="rr-a-btn" href="service-details.html">Learn More <i class="fa-solid fa-circle-plus"></i></a>
+                        <a class="rr-a-btn" href="{{ route('service') }}">Learn More <i class="fa-solid fa-circle-plus"></i></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- service area end -->
-     <br>
+<br>
+<br>
+<br>
+<br>
+<br>
