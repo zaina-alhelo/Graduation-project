@@ -83,6 +83,13 @@
           <span>Contact</span>
         </a>
       </li><!-- End Contact Page Nav -->
+      
+         <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('doctor.diagnose') }}">
+          <i class="bi bi-clipboard-pulse"></i>
+          <span>Diagnose</span>
+        </a>
+      </li><!-- End Diagnose Page Nav -->
 
    
 
