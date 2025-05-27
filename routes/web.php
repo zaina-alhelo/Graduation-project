@@ -40,7 +40,9 @@ Route::middleware(['auth', 'verified', 'role:admin'])->prefix('admin')->group(fu
 
 // Doctor Dashboard
     Route::middleware(['auth', 'verified', 'role:doctor'])->prefix('doctor')->group(function () {
-       
+        Route::get('/diagnose', function () {
+            return view('doctor.diagnose');
+        })->name('doctor.diagnose');
     // Doctor Dashboard
     Route::get('/dashboard', [App\Http\Controllers\Doctor\DashboardController::class, 'index'])->name('doctor.dashboard');
 
@@ -73,6 +75,7 @@ Route::get('/messages/{user}', [MessageController::class, 'index'])->name('messa
     // New route for checking read status of messages
     Route::get('/messages/{user}/check-read-status', [MessageController::class, 'checkReadStatus'])->name('message.check-read-status');
 });
+
 
 
 // Patient Dashboard
