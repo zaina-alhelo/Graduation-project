@@ -8,6 +8,7 @@
   <title>OptiEye</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+  <meta name="flask-api-url" content="http://localhost:5000">
 
   <!-- Favicons -->
 <link rel="shortcut icon" type="image/x-icon" href="{{ asset('landing/images/faviconf.ico') }}">

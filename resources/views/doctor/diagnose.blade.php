@@ -47,35 +47,7 @@ Eye Analysis
                             <img id="image-preview" class="image-preview" src="#" alt="Eye image preview" style="display:none;">
                         </div>
                         <br>
-                        <div class="patient-info mt-30">
-                            <h4 class="mb-15"><i class="fas fa-user-md"></i> Patient Information </h4>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="patient_name" class="form-label">Patient Name</label>
-                                    <input type="text" class="form-control" id="patient_name" name="patient_name" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="patient_age" class="form-label">Patient Age</label>
-                                    <input type="number" class="form-control" id="patient_age" name="patient_age" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="patient_gender" class="form-label">Gender</label>
-                                    <select class="form-select" id="patient_gender" name="patient_gender" required>
-                                        <option value="">Select Gender</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="patient_id" class="form-label">Patient ID (optional)</label>
-                                    <input type="text" class="form-control" id="patient_id" name="patient_id">
-                                </div>
-                                <div class="col-md-12 mb-3">
-                                    <label for="patient_notes" class="form-label">Medical Notes (optional)</label>
-                                    <textarea class="form-control" id="patient_notes" name="patient_notes" rows="3"></textarea>
-                                </div>
-                            </div>
-                        </div>
+                       
                         
                         <div class="text-center mt-40">
                             <button type="submit" class="rr-btn rr-btn__theme">

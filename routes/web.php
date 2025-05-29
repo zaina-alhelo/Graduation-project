@@ -5,6 +5,7 @@ use App\Http\Controllers\AvailableTimeController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DiagnoseController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
@@ -26,7 +27,9 @@ Route::get('/', function () {
 // Routes requiring authentication
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/profile', [ProfileController::class, 'show'])->name('user.profile');
+    Route::get('/profile', function () {
+        return view('landing.profile');
+    })->name('user.profile');
 });
 
 
@@ -66,6 +69,9 @@ Route::put('appointments/{appointment}', [AppointmentController::class, 'update'
         ->name('appointments.fullyBookedDates');
     Route::get('patient/create', [PatientController::class, 'create'])->name('patients.create'); // Show patient registration form
     Route::post('patient', [PatientController::class, 'store'])->name('patients.store');         // Store new patient
+
+    Route::post('/diagnose', [DiagnoseController::class, 'analyze'])->name('doctor.diagnose');
+
 
 Route::get('/messages/{user}', [MessageController::class, 'index'])->name('message.index');
     Route::post('/messages/{user}/send', [MessageController::class, 'send'])->name('message.send');
@@ -126,17 +132,6 @@ Route::post('/email/resend', function (Request $request) {
 // Google login routes
 Route::get('login/google', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('login/google/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGoogleCallback']);
-
-// Conversation routes
-// Route::post('/send-message', [MessageController::class, 'sendMessage']);
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('/conversations/create', [ConversationController::class, 'create'])->name('conversations.create');
-//     Route::post('/conversations', [ConversationController::class, 'store'])->name('conversations.store');
-//     Route::get('/conversations/{conversation}', [ConversationController::class, 'show'])->name('conversations.show');
-//     // Route::post('/conversations/{conversation}/messages', [MessageController::class, 'store'])->name('messages.store');
-// });
-
-// Route::post('/chat/{conversation_id}/send', [ChatController::class, 'sendMessage'])->name('sendMessage');
 
 
 

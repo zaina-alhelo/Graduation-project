@@ -62,7 +62,7 @@
         <ul class="submenu">
             @if (auth()->user()->role === 'user')
                 <li class="{{ request()->routeIs('patient.dashboard') ? 'active' : '' }}">
-                    <a href="{{ route('patient.dashboard') }}">My Profile</a>
+                    <a href="{{ route('user.profile') }}">My Profile</a>
                 </li>
             @elseif (auth()->user()->role === 'doctor')
                 <li class="{{ request()->routeIs('doctor.dashboard') ? 'active' : '' }}">
