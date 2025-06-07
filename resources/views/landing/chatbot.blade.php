@@ -76,4 +76,7 @@
         </div>
     </section>
     <!-- Enhanced Chatbot area end -->
-     @endsection
+
+    <script src="{{ asset('js/chat.js') }}"></script>
+   
+@endsection

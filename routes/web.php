@@ -5,6 +5,7 @@ use App\Http\Controllers\AvailableTimeController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ConversationController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DiagnoseController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
@@ -26,7 +27,9 @@ Route::get('/', function () {
 // Routes requiring authentication
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/profile', [ProfileController::class, 'show'])->name('user.profile');
+    Route::get('/profile', function () {
+        return view('landing.profile');
+    })->name('user.profile');
 });
 
 
@@ -40,7 +43,9 @@ Route::middleware(['auth', 'verified', 'role:admin'])->prefix('admin')->group(fu
 
 // Doctor Dashboard
     Route::middleware(['auth', 'verified', 'role:doctor'])->prefix('doctor')->group(function () {
-       
+        Route::get('/diagnose', function () {
+            return view('doctor.diagnose');
+        })->name('doctor.diagnose');
     // Doctor Dashboard
     Route::get('/dashboard', [App\Http\Controllers\Doctor\DashboardController::class, 'index'])->name('doctor.dashboard');
 
@@ -65,6 +70,9 @@ Route::put('appointments/{appointment}', [AppointmentController::class, 'update'
     Route::get('patient/create', [PatientController::class, 'create'])->name('patients.create'); // Show patient registration form
     Route::post('patient', [PatientController::class, 'store'])->name('patients.store');         // Store new patient
 
+    Route::post('/diagnose', [DiagnoseController::class, 'analyze'])->name('doctor.diagnose');
+
+
 Route::get('/messages/{user}', [MessageController::class, 'index'])->name('message.index');
     Route::post('/messages/{user}/send', [MessageController::class, 'send'])->name('message.send');
     Route::post('/messages/{user}/mark-read', [MessageController::class, 'markAsRead'])->name('message.mark-read');
@@ -73,6 +81,7 @@ Route::get('/messages/{user}', [MessageController::class, 'index'])->name('messa
     // New route for checking read status of messages
     Route::get('/messages/{user}/check-read-status', [MessageController::class, 'checkReadStatus'])->name('message.check-read-status');
 });
+
 
 
 // Patient Dashboard
@@ -123,17 +132,6 @@ Route::post('/email/resend', function (Request $request) {
 // Google login routes
 Route::get('login/google', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('login/google/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGoogleCallback']);
-
-// Conversation routes
-// Route::post('/send-message', [MessageController::class, 'sendMessage']);
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('/conversations/create', [ConversationController::class, 'create'])->name('conversations.create');
-//     Route::post('/conversations', [ConversationController::class, 'store'])->name('conversations.store');
-//     Route::get('/conversations/{conversation}', [ConversationController::class, 'show'])->name('conversations.show');
-//     // Route::post('/conversations/{conversation}/messages', [MessageController::class, 'store'])->name('messages.store');
-// });
-
-// Route::post('/chat/{conversation_id}/send', [ChatController::class, 'sendMessage'])->name('sendMessage');
 
 
 
@@ -193,6 +191,31 @@ Route::get('/portfolio-details', function () {
 Route::get('/chatbot', function () {
     return view('landing.chatbot');
 })->name('chatbot');
+
+Route::get('/drAnas', function () {
+    return view('landing.drAnas');
+})->name('drAnas');
+
+Route::get('/drYousef', function () {
+    return view('landing.drYousef');
+})->name('drYousef');
+
+Route::get('/drAhmad', function () {
+    return view('landing.drAhmad');
+})->name('drAhmad');
+
+Route::get('/drKhaled', function () {
+    return view('landing.drKhaled');
+})->name('drKhaled');
+
+Route::get('/drNoor', function () {
+    return view('landing.drNoor');
+})->name('drNoor');
+
+Route::get('/drRami', function () {
+    return view('landing.drRami');
+})->name('drRami');
+
 //   Route::get('/appointment-view', function () {
 //     return view('landing.appointment');
 // })->name('appointment.view');

@@ -1,5 +1,4 @@
-
-    <!-- ask-question area start -->
+<!-- ask-question area start -->
     <section class="ask-question section-space__bottom">
         <div class="container">
             <div class="row align-items-center">
@@ -19,7 +18,7 @@
                                 </h5>
                                 <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <p>Lorem Ipsum is simply dummy text the printing and typese Lorem Ipsum has been the industry's standard dummy text ever</p>
+                                        <p>Our AI-powered diagnostic system provides fast, accurate eye condition detection with minimal wait time. Using advanced image analysis algorithms, we can identify early signs of eye diseases that might go unnoticed in traditional exams.</p>
                                     </div>
                                 </div>
                             </div>
@@ -32,7 +31,7 @@
                                 </h5>
                                 <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <p>Lorem Ipsum is simply dummy text the printing and typese Lorem Ipsum has been the industry's standard dummy text ever</p>
+                                        <p>Our state-of-the-art facility combines the expertise of ophthalmologists with cutting-edge AI technology. We specialize in detecting conditions like diabetic retinopathy, glaucoma, and macular degeneration with precision and reliability.</p>
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +44,7 @@
                                 </h5>
                                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
-                                        <p>Lorem Ipsum is simply dummy text the printing and typese Lorem Ipsum has been the industry's standard dummy text ever</p>
+                                        <p>Our AI diagnostic tools are non-invasive and patient-friendly. The scanning process takes only minutes, and results are reviewed by both our AI system and expert ophthalmologists to ensure accurate diagnosis and personalized treatment recommendations.</p>
                                     </div>
                                 </div>
                             </div>

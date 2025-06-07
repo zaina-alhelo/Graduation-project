@@ -7,4 +7,6 @@
     @include('landing.sections.about-us')
     @include('landing.sections.ask-question')
     @include('landing.sections.team')
-@endsection
+    @include('landing.sections.comments')
+
+    @endsection
