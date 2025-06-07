@@ -50,9 +50,7 @@
           <i class="bi bi-clipboard-pulse"></i>
           <span>Diagnose</span>
         </a>
-      </li><!-- End Diagnose Page Nav -->
-
-   
+      </li><!-- End Medical Condition Page Nav -->
 
     </ul>
 

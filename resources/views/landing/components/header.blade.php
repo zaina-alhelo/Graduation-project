@@ -30,11 +30,10 @@
                                     </li>
 
                                     <li class="has-dropdown {{ request()->routeIs('faq') || request()->routeIs('about-us') || request()->routeIs('appointment') ? 'active' : '' }}">
-                                        <a href="javascript:void(0)">Pages</a>
+                                        <a href="javascript:void(0)">Information</a>
                                         <ul class="submenu">
                                             <li class="{{ request()->routeIs('faq') ? 'active' : '' }}"><a href="{{route('faq')}}">Faq</a></li>
                                             <li class="{{ request()->routeIs('about-us') ? 'active' : '' }}"><a href="{{route('about-us')}}">About us</a></li>
-                                            <li class="{{ request()->routeIs('appointment') ? 'active' : '' }}"><a href="{{route('appointments.form')}}">Appointment</a></li>
                                         </ul>
                                     </li>
 
@@ -43,7 +42,11 @@
                                     </li>
 
                                     <li class="{{ request()->routeIs('doctor') ? 'active' : '' }}">
-                                        <a href="{{route('doctor')}}">Specialists</a>
+                                        <a href="{{route('doctor')}}">Doctors</a>
+                                    </li>
+
+                                    <li class="{{ request()->routeIs('appointment') ? 'active' : '' }}">
+                                        <a href="{{route('appointments.form')}}">Appointment</a>
                                     </li>
 
                                     <li class="{{ request()->routeIs('chatbot') ? 'active' : '' }}">

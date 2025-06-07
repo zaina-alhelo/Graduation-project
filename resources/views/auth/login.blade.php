@@ -50,5 +50,12 @@
                 <p><a href="{{ route('password.request') }}" class="text-decoration-none">Forgot Password?</a></p>
                 <p>Don't have an account? <a href="{{ route('register') }}" class="text-decoration-none">Sign up</a></p>
             </div>
+            
+            <div class="mt-4 text-center">
+                <a href="{{ route('home') }}" class="btn btn-outline-primary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to OptiEye
+                </a>
+            </div>
+            
         </form>
 @endsection

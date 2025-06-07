@@ -1,5 +1,4 @@
-
-    .upload-area {
+.upload-area {
         border: 2px dashed #007bff;
         border-radius: 10px;
         padding: 40px 20px;
@@ -60,4 +59,45 @@
         border-radius: 10px;
         background-color: #f8f9fa;
         border: 1px solid #dee2e6;
+    }
+    
+    /* Website Button Styling */
+    .website-btn {
+        display: inline-block;
+        background-color: #007bff;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 1;
+        padding: 18px 36px;
+        border-radius: 5px;
+        text-align: center;
+        border: 2px solid #007bff;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        transition: all 0.3s ease-out;
+    }
+    
+    .website-btn:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+        color: #ffffff;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 123, 255, 0.15);
+    }
+    
+    .website-btn:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+    
+    .website-btn-sm {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .diagnose-btn-area {
+        margin-top: 30px;
     }

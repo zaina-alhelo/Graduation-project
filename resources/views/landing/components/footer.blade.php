@@ -1,6 +1,6 @@
 <!-- Footer area start -->
 <footer>
-    <section class="footer__area-common white-bg overflow-hidden theme-bg-color-100" data-background="assets/imgs/footer/background.png">
+    <section class="footer__area-common white-bg overflow-hidden theme-bg-color-100" data-background="{{ asset('landing/assets/imgs/footer/background.png') }}">
         <div class="container">
             <div class="row mb-minus-50">
                 <div class="col-lg-3 col-6">
@@ -75,7 +75,6 @@
                         <div class="footer__link footer__link-location">
                             <ul>
                                 <li><a href="mailto:contact@optieye.com"><i class="fa-solid fa-envelope"></i> optieyesup@gmail.com</a></li>
-                                <li><a href="https://maps.app.goo.gl/GbYDkVogoiG7y9dAA"><i class="fa-solid fa-location-dot"></i>Al Hussein Bin Talal University</a></li>
                             </ul>
                         </div>
                     </div>
@@ -89,16 +88,14 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="footer__copyright text-lg-start text-center">
-                                <p class="mb-0">© <a href="index.html">OptiEye</a> 2025 | All Rights Reserved</p>
+                                <p class="mb-0">© <a href="{{ route('home') }}">OptiEye</a> 2025 | All Rights Reserved</p>
                             </div>
                         </div>
 
                         <div class="col-lg-6">
                             <div class="footer__copyright-menu">
                                 <ul>
-                                    <li><a href="about-us.html">Terms & Conditions</a></li>
-                                    <li><a href="about-us.html">Privacy Policy</a></li>
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    <li><a href="{{ route('contact') }}">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>

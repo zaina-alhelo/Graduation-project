@@ -6,7 +6,7 @@
     @include('landing.sections.eye-health')
     @include('landing.sections.about-us')
     @include('landing.sections.ask-question')
-    @include('landing.sections.brand')
     @include('landing.sections.team')
-    @include('landing.sections.blog')
-@endsection
+    @include('landing.sections.comments')
+
+    @endsection

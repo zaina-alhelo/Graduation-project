@@ -37,10 +37,8 @@ Eye Analysis
                         <div class="file-info" style="display:none;">
                             <div class="d-flex align-items-center justify-content-between">
                                 <h5 class="mb-0">Selected Image:</h5>
-                                <button type="button" class="rr-btn rr-btn__theme-white btn-sm" id="remove-file">
-                                    <span class="btn-wrap">
-                                        <span class="text-one">Remove  <i class="fas fa-trash-alt"></i></span>
-                                    </span>
+                                <button type="button" class="website-btn website-btn-sm" id="remove-file">
+                                    <span>Remove</span>
                                 </button>
                             </div>
                             <p id="file-name" class="mt-10 mb-0"></p>
@@ -49,11 +47,9 @@ Eye Analysis
                         <br>
                        
                         
-                        <div class="text-center mt-40">
-                            <button type="submit" class="rr-btn rr-btn__theme">
-                                <span class="btn-wrap">
-                                    <span class="text-one">Start Analysis <i class="fas fa-microscope"></i></span>
-                                </span>
+                        <div class="diagnose-btn-area text-center mt-40">
+                            <button type="submit" class="website-btn">
+                                <span>Start Analysis</span>
                             </button>
                         </div>
                     </form>

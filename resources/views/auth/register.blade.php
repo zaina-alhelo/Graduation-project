@@ -76,6 +76,11 @@
         <div class="form-footer">
             <p>Already have an account? <a href="{{ route('login') }}">Log in</a></p>
         </div>
+          <div class="mt-4 text-center">
+                <a href="{{ route('home') }}" class="btn btn-outline-primary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to OptiEye
+                </a>
+            </div>
     </form>
 @endsection
 
