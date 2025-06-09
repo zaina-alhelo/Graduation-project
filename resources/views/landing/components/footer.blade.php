@@ -46,22 +46,11 @@
                 <div class="col-lg-4 col-6">
                     <div class="footer__widget footer__widget-item-3">
                         <div class="footer__widget-title">
-                            <h4>Our newsletter</h4>
+                            <h4>Eye Health Tips</h4>
                         </div>
 
                         <div class="footer__subscribe-content">
-                            <p class="mb-30 mb-xs-25">Subscribe to our newsletter for the latest updates on eye health technology, AI advancements, and preventive care tips</p>
-
-                            <div class="footer__subscribe d-flex mt-30 mt-xs-25">
-                                <input type="text" placeholder="Enter e-mail">
-                                <button type="submit" class="rr-btn rr-btn__theme">
-                                <span class="btn-wrap">
-                                    <span class="text-one"><i class="fa-solid fa-paper-plane"></i></span>
-
-                                    <span class="text-two"><i class="fa-solid fa-paper-plane"></i></span>
-                                </span>
-                                </button>
-                            </div>
+                            <p class="mb-30 mb-xs-25">Subscribe to our pages for the latest updates on eye health technology, AI advancements, and preventive care tips</p>
                         </div>
                     </div>
                 </div>

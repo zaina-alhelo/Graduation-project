@@ -42,6 +42,10 @@
                             <i class="fa-light fa-comments-alt"></i>
                             <span>Chat With Doctor</span>
                         </div>
+                        <div class="sidebar-item" data-target="appointment-status">
+                            <i class="fa-light fa-calendar-check"></i>
+                            <span>Appointments Status</span>
+                        </div>
                     </div>
                 </div>
                 
@@ -106,6 +110,34 @@
                                 </div>
                             </div>
                             
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group position-relative">
+                                        <label for="gender" class="form-label">Gender</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" style="background-color: rgba(var(--rr-theme-primary-rgb), 0.1); border: none;">
+                                                <i class="fa-light fa-venus-mars" style="font-size: 20px; color: var(--rr-theme-primary);"></i>
+                                            </span>
+                                            <select class="form-select" id="gender" style="height: 58px; border-radius: 0 8px 8px 0; font-size: 1.2rem;">
+                                                <option value="" selected>Select gender</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group position-relative">
+                                        <label for="age" class="form-label">Age</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" style="background-color: rgba(var(--rr-theme-primary-rgb), 0.1); border: none;">
+                                                <i class="fa-light fa-calendar-days" style="font-size: 20px; color: var(--rr-theme-primary);"></i>
+                                            </span>
+                                            <input type="number" class="form-control" id="age" value="32" min="1" max="120" style="height: 58px; border-radius: 0 8px 8px 0;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="d-flex justify-content-end mt-4">
                                 <button type="button" class="auth-btn login-btn me-2">
@@ -126,7 +158,6 @@
                         
                         <form id="passwordForm">
                             <div class="form-group position-relative">
-                                <label for="currentPassword" class="form-label">Current Password</label>
                                 <div class="input-group">
                                     <span class="input-group-text" style="background-color: rgba(var(--rr-theme-primary-rgb), 0.1); border: none;">
                                         <i class="fa-light fa-shield-keyhole" style="font-size: 20px; color: var(--rr-theme-primary);"></i>
@@ -136,17 +167,17 @@
                             </div>
                             
                             <div class="form-group position-relative">
-                                <label for="newPassword" class="form-label">New Password</label>
-                                <div class="input-group">
+<br>                                <div class="input-group">
                                     <span class="input-group-text" style="background-color: rgba(var(--rr-theme-primary-rgb), 0.1); border: none;">
                                         <i class="fa-light fa-key-skeleton" style="font-size: 20px; color: var(--rr-theme-primary);"></i>
                                     </span>
-                                    <input type="password" class="form-control" id="newPassword" placeholder="Password must be at least 8 characters long and include numbers and special characters" required>
+                                    <input type="password" class="form-control" id="newPassword" placeholder="New Password (A-Z, 0-9, special)
+" required>
                                 </div>
                             </div>
                             
                             <div class="form-group position-relative">
-                                <label for="confirmPassword" class="form-label">Confirm New Password</label>
+<br>
                                 <div class="input-group">
                                     <span class="input-group-text" style="background-color: rgba(var(--rr-theme-primary-rgb), 0.1); border: none;">
                                         <i class="fa-light fa-check-circle" style="font-size: 20px; color: var(--rr-theme-primary);"></i>
@@ -218,6 +249,155 @@
                                         </button>
                                     </form>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Appointment Status Section -->
+                    <div class="profile-card enhanced-card" id="appointment-status-section" style="display: none;">
+                        <h4>Appointments Status</h4>
+                        
+                        <div class="appointment-list-container">
+                            <!-- Quick actions row -->
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div class="appointment-stats">
+                                    <div class="badge bg-primary rounded-pill mb-2">
+                                        <i class="fa-light fa-calendar-check me-1"></i> 1 Upcoming
+                                    </div>
+                                    <div class="badge bg-success rounded-pill">
+                                        <i class="fa-light fa-check-circle me-1"></i> 1 Completed
+                                    </div>
+                                </div>
+                                <a href="{{ url('appointment') }}" class="auth-btn signup-btn">
+                                    <i class="fa-light fa-calendar-plus"></i>
+                                    <span>Book New Appointment</span>
+                                </a>
+                            </div>
+                            
+                            <!-- Empty state (shown when filtered results are empty) -->
+                            <div id="emptyAppointmentsState" class="text-center py-5 d-none">
+                                <div class="empty-state-icon mb-3">
+                                    <i class="fa-light fa-calendar-xmark" style="font-size: 64px; color: #ccc;"></i>
+                                </div>
+                                <h5 class="text-muted">No appointments found</h5>
+                                <p class="text-muted">There are no appointments matching your current filters</p>
+                                <button id="clearFiltersBtn" class="btn btn-outline-primary mt-2">
+                                    <i class="fa-light fa-filter-slash me-1"></i> Clear Filters
+                                </button>
+                            </div>
+                            
+                            <!-- Enhanced appointment cards -->
+                            <div class="appointments-list">
+                                <!-- Upcoming appointment with priority indicator -->
+                                <div class="appointment-card upcoming hover-effect">
+                                    <div class="appointment-header">
+                                        <div class="appointment-date">
+                                            <i class="fa-light fa-calendar-day"></i>
+                                            <span>May 15, 2025 | 10:30 AM</span>
+                                        </div>
+                                  
+                                    </div>
+                                    <div class="appointment-body">
+                                        <div class="doctor-info">
+                                            <i class="fa-light fa-user-doctor" style="font-size: 1.5rem;"></i>
+                                            <div>
+                                                <h6 style="font-size: 1.5rem; font-weight: 600;">Dr. Johnson</h6>
+                                                <p style="font-size: 1.25rem; font-weight: 500;">Retina Specialist</p>
+                                            </div>
+                                        </div>
+                                        <div class="appointment-details">
+                                            <p><i class="fa-light fa-clipboard-list"></i> Vision Assessment</p>
+
+                                            <p><i class="fa-light fa-credit-card"></i> Cash on delivery</p>
+                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+                                
+                                <!-- Completed appointment with feedback -->
+                                <div class="appointment-card completed hover-effect">
+                                    <div class="appointment-header">
+                                        <div class="appointment-date">
+                                            <i class="fa-light fa-calendar-day"></i>
+                                            <span>April 2, 2025 | 2:15 PM</span>
+                                        </div>
+                                        <div class="appointment-status">
+                                            <span class="status-badge completed">Completed</span>
+                                        </div>
+                                    </div>
+                                    <div class="appointment-body">
+                                        <div class="doctor-info">
+                                            <i class="fa-light fa-user-doctor" style="font-size: 1.5rem;"></i>
+                                            <div>
+                                                <h6 style="font-size: 1.5rem; font-weight: 600;">Dr. Smith</h6>
+                                                <p style="font-size: 1.25rem; font-weight: 500;">Ophthalmologist</p>
+                                            </div>
+                                        </div>
+                                        <div class="appointment-details">
+                                            <p><i class="fa-light fa-clipboard-list"></i> Vision Assessment</p>
+                                            <p><i class="fa-light fa-credit-card"></i> Cash on delivery</p>
+
+                                            <div class="feedback-section mt-2 p-2 bg-light rounded">
+                                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                                    <span class="fw-bold text-muted"><i class="fa-light fa-comment-dots me-1"></i> Doctor's Notes:</span>
+                                                </div>
+                                                <p class="text-muted small mb-0">Prescription updated. Regular checkup recommended in 3 months.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                               
+                                </div>
+                                
+                                <!-- Canceled appointment -->
+                                <div class="appointment-card canceled hover-effect">
+                                    <div class="appointment-header">
+                                        <div class="appointment-date">
+                                            <i class="fa-light fa-calendar-day"></i>
+                                            <span>March 15, 2025 | 9:00 AM</span>
+                                        </div>
+                                        <div class="appointment-status">
+                                            <span class="status-badge canceled">Canceled</span>
+                                        </div>
+                                    </div>
+                                    <div class="appointment-body">
+                                        <div class="doctor-info">
+                                            <i class="fa-light fa-user-doctor" style="font-size: 1.5rem;"></i>
+                                            <div>
+                                                <h6 style="font-size: 1.5rem; font-weight: 600;">Dr. Patel</h6>
+                                                <p style="font-size: 1.25rem; font-weight: 500;">Glaucoma Specialist</p>
+                                            </div>
+                                        </div>
+                                        <div class="appointment-details">
+                                            <p class="text-muted mt-2"><i class="fa-light fa-circle-info"></i> Canceled by doctor on March 14, 2025</p>
+                                        </div>
+                                    </div>
+                                    <div class="appointment-footer">
+                                        <a href="{{ route('appointments.form') }}" class="auth-btn signup-btn">
+                                            <i class="fa-light fa-calendar-plus"></i>
+                                            <span>Reschedule</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Enhanced pagination -->
+                            <div class="pagination-container d-flex justify-content-between align-items-center mt-4">
+                                <div class="pagination-info text-muted small">
+                                    Showing 1-3 of 5 appointments
+                                </div>
+                                <nav aria-label="Appointment pagination">
+                                    <ul class="pagination pagination-sm">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" tabindex="-1"><i class="fa-light fa-chevron-left"></i></a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#"><i class="fa-light fa-chevron-right"></i></a>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>

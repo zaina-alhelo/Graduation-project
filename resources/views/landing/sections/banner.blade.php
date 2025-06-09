@@ -8,7 +8,7 @@
                 <div class="col-12">
                     <div class="banner__content text-center">
                         <h1 class="mb-25 mb-xs-20 title-animation">Advanced AI Eye Diagnosis</h1>
-                        <p class="mb-30 mb-xs-20">Get your eyes diagnosed</p>
+                        <p class="mb-30 mb-xs-20">Your Vision, Our Priority</p>
                         <div class="banner__media mt-45 mt-xs-35 position-relative">
                             <div class="panel wow"></div>
                             <img class="img-fluid" data-parallax='{"scale": 1.2, "smoothness": 15}' src="{{ asset('landing/images/octimg.jpg') }}" alt="Eye examination with advanced equipment">
