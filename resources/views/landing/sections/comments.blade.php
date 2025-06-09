@@ -1,17 +1,17 @@
- <!-- client-testimonial area start -->
-    <section class="client-testimonial section-space overflow-hidden">
+<!-- client-testimonial area start -->
+    <section class="client-testimonial section-space overflow-hidden" style="padding-top: 50px;">
         <div class="container">
             <div class="client-testimonial__shape"><img class="img-fluid" src="assets/imgs/testimonial/client-testimonial__helth.png" alt="icon not found"></div>
-            <div class="row align-items-end mb-60 mb-sm-50 mb-xs-40">
+            <div class="row align-items-end mb-40 mb-sm-30 mb-xs-20">
                 <div class="col-lg-7">
                     <div class="section__title-wrapper client-testimonial__content">
-                        <h5 class="section__subtitle color-theme-primary mb-15 mb-xs-10 title-animation"><img src="{{ asset('landing/assets/imgs/ask-quesiton/heart.png') }}" alt="icon not found" class="img-fluid"> Success Stories</h5>
+                        <h5 class="section__subtitle color-theme-primary mb-10 mb-xs-5 title-animation"><img src="{{ asset('landing/assets/imgs/ask-quesiton/heart.png') }}" alt="icon not found" class="img-fluid"> Success Stories</h5>
                         <h2 class="section__title mb-0 title-animation">How OptiEye AI Has Helped Preserve Vision</h2>
                     </div>
                 </div>
 
                 <div class="col-lg-5">
-                    <div class="client-testimonial__content-right mt-md-25 mt-sm-25 mt-xs-25">
+                    <div class="client-testimonial__content-right mt-md-15 mt-sm-15 mt-xs-15">
                         <p class="mb-0">Our AI system has helped thousands of people detect eye conditions early, allowing for timely intervention and treatment. Here are some stories from people whose vision was saved through early AI detection.</p>
                     </div>
                 </div>
